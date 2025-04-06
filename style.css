@@ -399,7 +399,7 @@ nav a:hover::after {
 /* Hero Section */
 #hero {
   position: relative;
-  background: var(--hero-bg-path) center/contain no-repeat; /* Changed from cover to contain */
+  background: var(--hero-bg-path) center 0/contain no-repeat; /* Changed position from center to center 0 to move image higher */
   margin-top: 60px; /* This accounts for the header height */
   min-height: 100vh;
   display: flex;
@@ -436,35 +436,35 @@ nav a:hover::after {
   max-width: 650px;
   text-align: left;
   padding-top: 0;
-  margin-top: 65vh; /* Increased from 45vh to 65vh to position text below the image text */
+  margin-top: 72vh; /* Increased from 65vh to 72vh to move text container down further */
   background-color: rgba(21, 21, 36, 0.8); /* Add semi-transparent background to ensure text is readable */
-  padding: 1.5rem;
+  padding: 1.2rem; /* Reduced from 1.5rem to 1.2rem */
   border-radius: 8px;
 }
 
 .hero-text .description {
   font-size: clamp(1.1rem, 2vw, 1.3rem);
-  line-height: 1.6;
-  margin-bottom: 2rem;
+  line-height: 1.5; /* Reduced from 1.6 to 1.5 */
+  margin-bottom: 1.5rem; /* Reduced from 2rem to 1.5rem */
   color: white;
   background-color: rgba(26, 26, 46, 0.7); /* Semi-transparent background for readability */
-  padding: 1rem;
+  padding: 0.8rem; /* Reduced from 1rem to 0.8rem */
   border-radius: 8px;
 }
 
 .hero-text .benefits {
   list-style: none;
   padding: 0;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1.5rem 0; /* Reduced from 2rem to 1.5rem */
   background-color: rgba(26, 26, 46, 0.7); /* Semi-transparent background for readability */
-  padding: 1rem;
+  padding: 0.8rem; /* Reduced from 1rem to 0.8rem */
   border-radius: 8px;
 }
 
 .hero-text .benefits li {
   font-size: clamp(1rem, 1.5vw, 1.2rem);
-  line-height: 1.5;
-  margin-bottom: 1rem;
+  line-height: 1.4; /* Reduced from 1.5 to 1.4 */
+  margin-bottom: 0.8rem; /* Reduced from 1rem to 0.8rem */
   display: flex;
   align-items: center;
   gap: 0.8rem;
@@ -506,13 +506,13 @@ nav a:hover::after {
   }
 
   .hero-container {
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
     padding-top: 0; /* Remove top padding */
   }
 
   .hero-text {
     max-width: 100%;
-    margin-top: 55vh; /* Adjusted for mobile to position below the hero image text */
+    margin-top: 62vh; /* Adjusted for mobile from 55vh to 62vh */
     padding: 1rem; /* Slightly smaller padding on mobile */
   }
 
@@ -2791,12 +2791,12 @@ h1, h2, h3, h4, h5, h6, p, li, span {
   }
 
   .hero-text {
-    margin-top: 55vh; /* Match the value from the first media query */
+    margin-top: 62vh; /* Match the value from the first media query */
     padding: 1rem; /* Consistent padding */
   }
 
   .hero-container {
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
     padding-top: 0; /* Remove top padding */
   }
 }
