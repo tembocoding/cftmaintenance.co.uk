@@ -19,7 +19,7 @@
   --logo-path: url('/CFT_Maintenance_Logo.png');
   --hero-bg-path: url('/chalk-board-image.png');
   --tools-bg-path: url('/tools-background.png');
-  --support-bg-path: url('/support-team.png');
+  --support-bg-path: url('./support-team.png'); /* Changed from '/support-team.png' to './support-team.png' */
   
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--accent-color));
@@ -493,11 +493,12 @@ nav a:hover::after {
 }
 
 /* Mobile Styles */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   #hero {
-    background-position: center;
+    background-position: top center;
+    background-size: 100% auto; /* This makes the image fit the width of the screen while maintaining aspect ratio */
     height: auto;
-    min-height: 100vh;
+    min-height: 100vh; /* Ensure full height on mobile */
   }
 
   .hero-container {

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '--logo-path': 'CFT_Maintenance_Logo.png',
         '--hero-bg-path': 'chalk-board-image.png',
         '--tools-bg-path': 'tools-background.png',
-        '--support-bg-path': 'support-team.png'
+        '--support-bg-path': './support-team.png'
       };
       
       Object.entries(cssImages).forEach(([variable, image]) => {
