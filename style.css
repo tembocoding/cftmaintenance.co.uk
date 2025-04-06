@@ -19,7 +19,7 @@
   --logo-path: url('/CFT_Maintenance_Logo.png');
   --hero-bg-path: url('/chalk-board-image.png');
   --tools-bg-path: url('/tools-background.png');
-  --support-bg-path: url('./support-team.png'); /* Changed from '/support-team.png' to './support-team.png' */
+  --support-bg-path: url('/support-team.png'); /* Fixed path to load properly */
   
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--accent-color));
@@ -305,7 +305,7 @@ nav a {
   color: var(--text-light) !important;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease; /* Changed from color to all for smoother transitions */
   position: relative;
   padding: 0.5rem 0;
   font-size: 0.9rem;
@@ -319,11 +319,12 @@ nav a::after {
   width: 0;
   height: 2px;
   background: var(--gradient-primary);
-  transition: width 0.3s ease;
+  transition: all 0.3s ease; /* Added for smoother transitions */
 }
 
 nav a:hover {
   color: var(--primary-color) !important;
+  text-shadow: 0 0 8px rgba(255, 184, 0, 0.3); /* Add subtle glow on hover */
 }
 
 nav a:hover::after {
@@ -571,10 +572,11 @@ section h2::after {
 
 /* Services Section */
 #services {
-  padding: 40px 0;
-  background: var(--tools-bg-path) center/cover no-repeat;
+  padding: 25px 0 50px; /* Reduced from 40px 0 */
+  background: var(--tools-bg-path) center/contain no-repeat;
   position: relative;
   z-index: 1;
+  background-color: var(--bg-darker);
 }
 
 /* Reduce the overlay opacity to make the background image more visible */
@@ -597,48 +599,49 @@ section h2::after {
 
 .service-intro {
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.2rem; /* Reduced from 1.25rem */
   color: var(--text-muted);
   max-width: 800px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1.5rem; /* Reduced from 2rem */
   position: relative;
 }
 
 .service-intro::after {
   content: '';
   position: absolute;
-  bottom: -1.5rem;
+  bottom: -1rem; /* Reduced from -1.5rem */
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
+  width: 80px; /* Reduced from 100px */
+  height: 3px; /* Reduced from 4px */
   background: var(--gradient-primary);
   border-radius: 2px;
 }
 
 .services-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Change from flex to grid with 4 columns */
+  grid-template-rows: repeat(2, auto); /* 2 rows for 8 services */
+  gap: 1rem; /* Reduced from 2rem to fit better */
+  margin-top: 1.5rem; /* Reduced from 2rem */
   justify-content: center;
 }
 
 #services .service {
-  flex: 0 1 calc(50% - 1rem);
-  min-width: 300px;
-  max-width: calc(50% - 1rem);
-  background: rgba(36, 36, 56, 0.75); /* Made card background semi-transparent */
+  flex: unset; /* Remove flex properties since we're using grid */
+  min-width: unset; /* Remove min-width constraint */
+  max-width: unset; /* Remove max-width constraint */
+  background: rgba(36, 36, 56, 0.75);
   border: var(--card-border);
-  border-radius: 16px;
-  padding: 2rem;
+  border-radius: 12px; /* Reduced from 16px */
+  padding: 1rem; /* Reduced from 2rem to make cards more compact */
   text-align: left;
   transition: all 0.3s ease;
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
   color: var(--text-light);
-  backdrop-filter: blur(3px); /* Add slight blur for text readability */
+  backdrop-filter: blur(3px);
 }
 
 #services .service::before {
@@ -669,16 +672,16 @@ section h2::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem; /* Reduced from 2rem */
   text-align: center;
 }
 
 .team-member-image {
-  width: 120px;
-  height: 120px;
+  width: 80px; /* Reduced from 120px */
+  height: 80px; /* Reduced from 120px */
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem; /* Reduced from 1rem */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -700,7 +703,7 @@ img[src="./images/CFT_logo.png"].team-member-image {
 
 .service-header h3 {
   color: var(--primary-color) !important;
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* Reduced from 1.5rem */
   font-weight: 600;
   margin: 0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -712,16 +715,17 @@ img[src="./images/CFT_logo.png"].team-member-image {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem; /* Reduced from 1rem */
 }
 
 #services .service-features li {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  padding: 0.5rem;
+  gap: 0.5rem; /* Reduced from 1rem */
+  padding: 0.3rem; /* Reduced from 0.5rem */
   border-radius: 8px;
   transition: all 0.3s ease;
+  font-size: 0.85rem; /* Added smaller font size */
 }
 
 #services .service-features li:hover {
@@ -738,7 +742,7 @@ img[src="./images/CFT_logo.png"].team-member-image {
 #services .service-features li span {
   color: var(--text-light) !important;
   opacity: 0.9;
-  line-height: 1.4;
+  line-height: 1.3; /* Reduced from 1.4 */
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -747,10 +751,24 @@ img[src="./images/CFT_logo.png"].team-member-image {
   font-weight: 600;
 }
 
+@media (max-width: 1200px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+    grid-template-rows: repeat(3, auto); /* 3 rows needed for 8 services */
+  }
+}
+
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    grid-template-rows: repeat(4, auto); /* 4 rows needed for 8 services */
+  }
+}
+
 @media (max-width: 768px) {
-  #services .service {
-    flex: 1 1 100%;
-    max-width: 100%;
+  .services-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    grid-template-rows: repeat(8, auto); /* 8 rows for 8 services */
   }
 }
 
@@ -1003,10 +1021,11 @@ img[src="./images/CFT_logo.png"].team-member-image {
 
 /* How It Works Section */
 #how-it-works {
-  padding: 40px 0;
+  background: var(--bg-dark);
+  background: var(--support-bg-path) center/contain no-repeat; /* Changed to use support-team.png image */
+  background-color: var(--bg-darker); /* Added background color */
+  padding: 80px 0;
   position: relative;
-  background: var(--support-bg-path) center/cover no-repeat;
-  z-index: 1;
 }
 
 /* Add an overlay to ensure text contrast without completely hiding the background */
@@ -1578,9 +1597,10 @@ section {
 
 /* Add active state for navigation */
 nav a.active {
-    color: var(--text-dark);
+    color: var(--primary-color) !important; /* Changed to primary-color (orange) */
     position: relative;
     font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 184, 0, 0.5); /* Add orange glow effect */
 }
 
 nav a.active::after {
@@ -1591,6 +1611,7 @@ nav a.active::after {
     width: 100%;
     height: 2px;
     background-color: var(--primary-color);
+    box-shadow: 0 0 8px 1px var(--primary-color); /* Add glow to the underline */
 }
 
 /* Reorder hero container elements: Text first, Image on right */
@@ -2595,13 +2616,30 @@ nav a {
   color: var(--text-light) !important;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease; /* Changed from color to all for smoother transitions */
   position: relative;
   padding: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: all 0.3s ease; /* Added for smoother transitions */
 }
 
 nav a:hover {
   color: var(--primary-color) !important;
+  text-shadow: 0 0 8px rgba(255, 184, 0, 0.3); /* Add subtle glow on hover */
+}
+
+nav a:hover::after {
+  width: 100%;
 }
 
 /* Ensure footer text is consistent */
