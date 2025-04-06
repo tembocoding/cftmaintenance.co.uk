@@ -433,12 +433,13 @@ nav a:hover::after {
 }
 
 .hero-text {
+  position: absolute;
+  top: 280px; /* Fixed Y position at 280px */
+  left: 170px; /* Fixed X position at 170px */
   max-width: 650px;
   text-align: left;
-  padding-top: 0;
-  margin-top: 72vh; /* Increased from 65vh to 72vh to move text container down further */
-  background-color: rgba(21, 21, 36, 0.8); /* Add semi-transparent background to ensure text is readable */
   padding: 1.2rem; /* Reduced from 1.5rem to 1.2rem */
+  background-color: rgba(21, 21, 36, 0.8); /* Add semi-transparent background to ensure text is readable */
   border-radius: 8px;
 }
 
@@ -511,9 +512,11 @@ nav a:hover::after {
   }
 
   .hero-text {
-    max-width: 100%;
-    margin-top: 62vh; /* Adjusted for mobile from 55vh to 62vh */
-    padding: 1rem; /* Slightly smaller padding on mobile */
+    position: relative; /* Reset position for mobile */
+    top: auto; /* Reset top for mobile */
+    left: auto; /* Reset left for mobile */
+    margin-top: 62vh; /* Match the value from the first media query */
+    padding: 1rem; /* Consistent padding */
   }
 
   .hero-text .description {
@@ -2791,6 +2794,9 @@ h1, h2, h3, h4, h5, h6, p, li, span {
   }
 
   .hero-text {
+    position: relative; /* Reset position for mobile */
+    top: auto; /* Reset top for mobile */
+    left: auto; /* Reset left for mobile */
     margin-top: 62vh; /* Match the value from the first media query */
     padding: 1rem; /* Consistent padding */
   }
