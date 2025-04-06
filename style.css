@@ -439,37 +439,40 @@ nav a:hover::after {
   max-width: 650px;
   text-align: left;
   padding: 1.2rem; /* Reduced from 1.5rem to 1.2rem */
-  background-color: rgba(21, 21, 36, 0.8); /* Add semi-transparent background to ensure text is readable */
+  background-color: transparent; /* Remove the background color */
   border-radius: 8px;
 }
 
 .hero-text .description {
-  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-size: clamp(1.2rem, 2.2vw, 1.4rem); /* Increased font size */
   line-height: 1.5; /* Reduced from 1.6 to 1.5 */
   margin-bottom: 1.5rem; /* Reduced from 2rem to 1.5rem */
   color: white;
-  background-color: rgba(26, 26, 46, 0.7); /* Semi-transparent background for readability */
-  padding: 0.8rem; /* Reduced from 1rem to 0.8rem */
-  border-radius: 8px;
+  background-color: transparent; /* Remove background */
+  padding: 0; /* Remove padding */
+  border-radius: 0; /* Remove border radius */
+  font-weight: 500; /* Make text slightly bolder */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Add text shadow for readability */
 }
 
 .hero-text .benefits {
   list-style: none;
   padding: 0;
   margin: 0 0 1.5rem 0; /* Reduced from 2rem to 1.5rem */
-  background-color: rgba(26, 26, 46, 0.7); /* Semi-transparent background for readability */
-  padding: 0.8rem; /* Reduced from 1rem to 0.8rem */
-  border-radius: 8px;
+  background-color: transparent; /* Remove background */
+  padding: 0; /* Remove padding */
+  border-radius: 0; /* Remove border radius */
 }
 
 .hero-text .benefits li {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem); /* Reduced font size to be smaller than description */
   line-height: 1.4; /* Reduced from 1.5 to 1.4 */
   margin-bottom: 0.8rem; /* Reduced from 1rem to 0.8rem */
   display: flex;
   align-items: center;
   gap: 0.8rem;
   color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Add text shadow for readability */
 }
 
 .hero-text .benefits li::before {
@@ -517,15 +520,16 @@ nav a:hover::after {
     left: auto; /* Reset left for mobile */
     margin-top: 62vh; /* Match the value from the first media query */
     padding: 1rem; /* Consistent padding */
+    background-color: transparent; /* Keep transparent background */
   }
 
   .hero-text .description {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Slightly smaller on mobile but still larger than bullet points */
     margin-bottom: 1.5rem;
   }
 
   .hero-text .benefits li {
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 1.2vw, 1rem); /* Keep smaller than description */
     margin-bottom: 0.8rem;
   }
 }
@@ -2799,6 +2803,7 @@ h1, h2, h3, h4, h5, h6, p, li, span {
     left: auto; /* Reset left for mobile */
     margin-top: 62vh; /* Match the value from the first media query */
     padding: 1rem; /* Consistent padding */
+    background-color: transparent; /* Keep transparent background */
   }
 
   .hero-container {
