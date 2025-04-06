@@ -444,7 +444,7 @@ nav a:hover::after {
 }
 
 .hero-text .description {
-  font-size: clamp(0.72rem, 1.32vw, 0.84rem); /* Reduced to 60% of previous size but 20% larger than benefits */
+  font-size: clamp(1.0rem, 1.8vw, 1.2rem); /* Increased to match the original benefits size */
   line-height: 1.5;
   margin-bottom: 1.5rem;
   color: white;
@@ -464,15 +464,26 @@ nav a:hover::after {
   border-radius: 0;
 }
 
-.hero-text .benefits li {
-  font-size: clamp(0.6rem, 1.1vw, 0.7rem); /* Reduced to 60% of previous size */
-  line-height: 1.4;
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+/* Direct targeting of hero benefits list items with high specificity and !important flags */
+.hero-text .benefits li,
+#hero .hero-text .benefits li,
+body .hero-text .benefits li,
+.hero-container .hero-text .benefits li {
+  font-size: 1rem !important; /* Match service features span size */
+  line-height: 1.4 !important;
+  margin-bottom: 0.8rem !important;
+  color: white !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Also need to override media queries */
+@media (max-width: 768px) {
+  .hero-text .benefits li,
+  #hero .hero-text .benefits li,
+  body .hero-text .benefits li,
+  .hero-container .hero-text .benefits li {
+    font-size: 0.85rem !important; /* Slightly smaller on mobile */
+  }
 }
 
 .hero-text .benefits li::before {
@@ -526,15 +537,11 @@ nav a:hover::after {
   }
 
   .hero-text .description {
-    font-size: clamp(0.66rem, 1.5vw, 0.78rem); /* Reduced but still 20% larger than benefits */
+    font-size: clamp(0.9rem, 2.0vw, 1.0rem); /* Increased to match original benefits size */
     margin-bottom: 1.2rem;
   }
-
-  .hero-text .benefits li {
-    font-size: clamp(0.55rem, 1.2vw, 0.65rem); /* Reduced to 60% of previous size */
-    margin-bottom: 0.6rem;
-    gap: 0.6rem;
-  }
+  
+  /* Removed benefits li style to avoid conflicts */
   
   .hero-text .btn.primary-cta {
     font-size: 0.8rem;
@@ -1065,9 +1072,9 @@ img[src="./images/CFT_logo.png"].team-member-image {
   box-shadow: var(--shadow-lg);
   background: rgba(42, 42, 64, 0.8);
   border-color: var(--primary-color);
-}
+  }
 
-.process-step h4 {
+  .process-step h4 {
   color: var(--primary-color);
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
@@ -2142,7 +2149,6 @@ nav a.active::after {
 }
 
 .benefits li {
-  font-size: 1.2rem;
   line-height: 1.5;
   margin-bottom: 1rem;
   display: flex;
@@ -2157,7 +2163,7 @@ nav a.active::after {
   content: "→";
   color: var(--primary-color);
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.1rem; /* Reduced from 1.4rem */
 }
 
 .primary-cta {
@@ -2186,9 +2192,7 @@ nav a.active::after {
     font-size: 1.2rem;
   }
   
-  .benefits li {
-    font-size: 1.3rem;
-  }
+  /* Removed benefits li font-size to avoid conflicts with our specific rules */
   
   .primary-cta {
     font-size: 1.1rem;
@@ -2815,21 +2819,15 @@ h1, h2, h3, h4, h5, h6, p, li, span {
   }
   
   .hero-text .description {
-    font-size: clamp(0.66rem, 1.5vw, 0.78rem); /* Reduced but still 20% larger than benefits */
+    font-size: clamp(0.9rem, 2.0vw, 1.0rem); /* Increased to match original benefits size */
+    margin-bottom: 1.2rem;
   }
-
-  .hero-text .benefits li {
-    font-size: clamp(0.55rem, 1.2vw, 0.65rem); /* Reduced to 60% of previous size */
-  }
+  
+  /* Removed benefits li style to avoid conflicts */
   
   .hero-text .btn.primary-cta {
     font-size: 0.8rem;
     padding: 0.6rem 1.5rem;
-  }
-
-  .hero-container {
-    padding-bottom: 2rem;
-    padding-top: 0; /* Remove top padding */
   }
 }
 
@@ -3591,13 +3589,21 @@ h1, h2, h3, h4, h5, h6, p, li, span {
 }
 
 .benefits li {
-  font-size: 1rem;
   line-height: 1.5;
   margin-bottom: 1rem;
   display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  color: #2D3748;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--text-light) !important;
+  opacity: 1 !important;
+  font-weight: 500;
+}
+
+.benefits li::before {
+  content: "→";
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 1.1rem; /* Reduced from 1.4rem */
 }
 
 .benefits .arrow {
@@ -3707,7 +3713,7 @@ h1, h2, h3, h4, h5, h6, p, li, span {
   gap: 0.8rem;
   margin-bottom: 0.8rem;
   color: #4A5568;
-  font-size: 1rem;
+    font-size: 1rem;
   line-height: 1.4;
 }
 
@@ -3808,6 +3814,11 @@ h1, h2, h3, h4, h5, h6, p, li, span {
   position: relative;
   padding-left: 1rem;
   border-left: 4px solid var(--accent-color);
+}
+
+#hero .hero-subtitle, 
+#hero .benefits li {
+  /* Removed colors to avoid conflicts with our specific rules */
 }
 
 
