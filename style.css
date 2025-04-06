@@ -400,7 +400,7 @@ nav a:hover::after {
 #hero {
   position: relative;
   background: var(--hero-bg-path) center/contain no-repeat; /* Changed from cover to contain */
-  margin-top: 60px;
+  margin-top: 60px; /* This accounts for the header height */
   min-height: 100vh;
   display: flex;
   align-items: flex-start;
@@ -436,7 +436,10 @@ nav a:hover::after {
   max-width: 650px;
   text-align: left;
   padding-top: 0;
-  margin-top: 45vh; /* Reduced from 60vh to 45vh to position text higher */
+  margin-top: 65vh; /* Increased from 45vh to 65vh to position text below the image text */
+  background-color: rgba(21, 21, 36, 0.8); /* Add semi-transparent background to ensure text is readable */
+  padding: 1.5rem;
+  border-radius: 8px;
 }
 
 .hero-text .description {
@@ -504,12 +507,13 @@ nav a:hover::after {
 
   .hero-container {
     padding-bottom: 3rem;
-    padding-top: 80px; /* Account for the fixed header */
+    padding-top: 0; /* Remove top padding */
   }
 
   .hero-text {
-    margin-top: 25vh; /* Keep this reduced value for mobile */
-    padding-top: 0; /* Remove any padding-top */
+    max-width: 100%;
+    margin-top: 55vh; /* Adjusted for mobile to position below the hero image text */
+    padding: 1rem; /* Slightly smaller padding on mobile */
   }
 
   .hero-text .description {
@@ -2787,13 +2791,13 @@ h1, h2, h3, h4, h5, h6, p, li, span {
   }
 
   .hero-text {
-    margin-top: 25vh; /* Keep this reduced value for mobile */
-    padding-top: 0; /* Remove any padding-top */
+    margin-top: 55vh; /* Match the value from the first media query */
+    padding: 1rem; /* Consistent padding */
   }
 
   .hero-container {
     padding-bottom: 3rem;
-    padding-top: 80px; /* Account for the fixed header */
+    padding-top: 0; /* Remove top padding */
   }
 }
 
