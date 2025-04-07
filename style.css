@@ -62,7 +62,7 @@ body {
 
 /* Pricing Accordion Specific Styles */
 .pricing-accordion {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 0;
 }
@@ -400,15 +400,17 @@ nav a:hover::after {
 /* Hero Section */
 #hero {
   position: relative;
-  background: var(--hero-bg-path) center 0/contain no-repeat; /* Changed position from center to center 0 to move image higher */
+  background: var(--hero-bg-path) center 0/contain no-repeat;
   margin-top: 60px; /* This accounts for the header height */
-  min-height: 100vh;
+  min-height: auto; /* Changed from 100vh to auto to remove extra space */
   display: flex;
   align-items: flex-start;
   overflow: hidden;
-  background-color: var(--bg-darker); /* Added background color to fill empty space */
-  padding-bottom: 0; /* Added to remove bottom padding */
-  margin-bottom: 0; /* Added to remove any margin at the bottom */
+  background-color: var(--bg-darker);
+  padding-bottom: 0;
+  margin-bottom: 0;
+  /* Ensure the background image maintains its aspect ratio */
+  background-size: contain;
 }
 
 #hero::before {
@@ -425,24 +427,26 @@ nav a:hover::after {
 .hero-container {
   position: relative;
   z-index: 2;
-  padding: 4rem 2rem 0; /* Changed from 4rem 2rem to remove bottom padding */
+  padding: 4rem 2rem 0;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: calc(100vh - 60px); /* Account for header height */
+  min-height: auto; /* Changed from calc(100vh - 60px) to auto */
+  /* This creates a container with the same aspect ratio as the original image */
+  aspect-ratio: 1080 / 720;
 }
 
 .hero-text {
   position: absolute;
-  top: 280px; /* Fixed Y position at 280px */
-  left: 170px; /* Fixed X position at 170px */
-  max-width: 650px;
+  top: 33.9%; /* 280/720 as a percentage */
+  left: 18.7%; /* 360/1080 as a percentage */
+  max-width: 60%; /* Make the text width responsive */
   text-align: left;
-  padding: 1.2rem; /* Reduced from 1.5rem to 1.2rem */
-  background-color: transparent; /* Remove the background color */
+  padding: 1.2rem;
+  background-color: transparent;
   border-radius: 8px;
 }
 
@@ -520,31 +524,31 @@ body .hero-text .benefits li,
 @media (max-width: 768px) {
   #hero {
     background-position: top center;
-    background-size: 100% auto; /* Keep 100% auto for mobile */
+    background-size: 100% auto;
     height: auto;
-    min-height: 100vh; /* Ensure full height on mobile */
+    min-height: 100vh;
   }
 
   .hero-container {
     padding-bottom: 2rem;
-    padding-top: 0; /* Remove top padding */
+    padding-top: 0;
+    aspect-ratio: auto; /* Reset aspect ratio for mobile */
   }
 
   .hero-text {
-    position: relative; /* Reset position for mobile */
-    top: auto; /* Reset top for mobile */
-    left: auto; /* Reset left for mobile */
-    margin-top: 62vh; /* Match the value from the first media query */
-    padding: 1rem; /* Consistent padding */
-    background-color: transparent; /* Keep transparent background */
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-top: 50vh; /* Reduced from 62vh to create less gap */
+    padding: 1rem;
+    background-color: transparent;
+    max-width: 100%; /* Allow full width on mobile */
   }
 
   .hero-text .description {
-    font-size: clamp(0.9rem, 2.0vw, 1.0rem); /* Increased to match original benefits size */
+    font-size: clamp(0.9rem, 2.0vw, 1.0rem);
     margin-bottom: 1.2rem;
   }
-  
-  /* Removed benefits li style to avoid conflicts */
   
   .hero-text .btn.primary-cta {
     font-size: 0.8rem;
@@ -574,13 +578,13 @@ section h2::after {
 
 /* Services Section */
 #services {
-  padding: 0 0 50px; /* Removed top padding (changed from 25px 0 50px) */
-  background: var(--tools-bg-path) center/cover no-repeat; /* Changed from contain to cover to fit the entire height */
+  padding: 0; /* Removed bottom padding of 50px */
+  background: var(--tools-bg-path) center/cover no-repeat;
   position: relative;
   z-index: 1;
   background-color: var(--bg-darker);
-  background-attachment: fixed; /* Added fixed attachment for better visual effect */
-  margin-top: 0; /* Added to ensure no margin at the top */
+  background-attachment: fixed;
+  margin-top: 0;
 }
 
 /* Reduce the overlay opacity to make the background image more visible */
@@ -599,15 +603,15 @@ section h2::after {
   max-width: 1200px;
   position: relative;
   z-index: 2;
-  padding-top: 0; /* Added to remove top padding */
+  padding: 0; /* Changed from padding-top: 0 to remove all padding */
 }
 
 .service-intro {
   text-align: center;
-  font-size: 1.2rem; /* Reduced from 1.25rem */
+  font-size: 1.2rem;
   color: var(--text-muted);
   max-width: 800px;
-  margin: 2rem auto 1.5rem; /* Changed from 0 auto 1.5rem to add some top margin */
+  margin: 0 auto 1.5rem; /* Changed from 2rem auto 1.5rem to remove top margin */
   position: relative;
 }
 
@@ -1089,6 +1093,7 @@ img[src="./images/CFT_logo.png"].team-member-image {
   transition: all 0.3s ease;
   border-left: 4px solid var(--accent-color);
   color: var(--text-light);
+  width: 100%;
 }
 
 .process-step:hover {
@@ -1188,32 +1193,22 @@ img[src="./images/CFT_logo.png"].team-member-image {
   font-weight: 700;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
   .process-container {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .process-container {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   
   .process-step {
     padding: 1.5rem;
-  }
-  
-  .process-intro {
-    font-size: 1.1rem;
-    padding: 0 1rem;
-  }
-  
-  .process-step h4 {
-    font-size: 1.2rem;
-  }
-  
-  .process-step ul li {
-    font-size: 1rem;
+    margin-bottom: 0;
   }
 }
 
@@ -2395,7 +2390,7 @@ nav a.active::after {
 
 /* Updated Pricing Section Styles */
 .pricing-accordion {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 0;
 }
@@ -2856,7 +2851,7 @@ h1, h2, h3, h4, h5, h6, p, li, span {
     position: relative; /* Reset position for mobile */
     top: auto; /* Reset top for mobile */
     left: auto; /* Reset left for mobile */
-    margin-top: 62vh; /* Match the value from the first media query */
+    margin-top: 62vh; /* Keep existing mobile positioning */
     padding: 1rem; /* Consistent padding */
     background-color: transparent; /* Keep transparent background */
   }
@@ -3123,28 +3118,52 @@ h1, h2, h3, h4, h5, h6, p, li, span {
 
 .process-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   align-items: start;
+  margin-top: 3rem;
 }
 
 .process-step {
-  background: white;
+  background: var(--bg-darker);
   border-radius: 12px;
-  padding: 1.2rem;
+  padding: 2rem;
   margin-bottom: 1rem;
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   border-left: 4px solid var(--accent-color);
+  color: var(--text-light);
+  width: 100%;
 }
 
-.process-step h4 {
+.process-step:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  background: rgba(42, 42, 64, 0.8);
+  border-color: var(--primary-color);
+  }
+
+  .process-step h4 {
   color: var(--primary-color);
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  flex-shrink: 0;
 }
 
 .process-step ul {
@@ -3154,18 +3173,18 @@ h1, h2, h3, h4, h5, h6, p, li, span {
 }
 
 .process-step ul li {
-  margin: 0.5rem 0;
-  padding-left: 1.2rem;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
   position: relative;
-  color: #4A5568;
-  font-size: 1rem;
-  line-height: 1.4;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .process-step ul li strong {
   color: var(--primary-color);
-  display: inline;
-  margin-right: 0.3rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
 }
 
 .process-step ul li::before {
@@ -3176,102 +3195,60 @@ h1, h2, h3, h4, h5, h6, p, li, span {
 }
 
 .process-intro {
-  font-size: 1.1rem;
-  color: #4A5568;
+  font-size: 1.3rem;
+  color: var(--text-light);
   max-width: 800px;
-  margin: 0 auto 2rem;
-  text-align: center;
-}
-
-.process-image {
-  position: sticky;
-  top: 2rem;
-}
-
-.process-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: var(--shadow-md);
-}
-
-.section-intro {
-  font-size: 1.3rem;
-  line-height: 1.8;
-  text-align: center;
-  max-width: 900px;
   margin: 0 auto 3rem;
-  color: #4A5568;
-}
-
-.section-intro strong {
-  color: var(--primary-color);
-  font-weight: 600;
-}
-
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.feature {
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
-  border-left: 4px solid var(--accent-color);
-}
-
-.feature:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.feature h3 {
-  color: var(--primary-color);
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-.feature p {
-  color: #4A5568;
-  font-size: 1.1rem;
+  text-align: center;
   line-height: 1.6;
 }
 
-.highlighted-feature {
-  background: linear-gradient(to right, #fff, #f8f9ff);
-  border-left: 4px solid var(--primary-color);
+#how-it-works {
+  background: var(--bg-dark);
+  padding: 80px 0;
+  position: relative;
 }
 
-.highlighted-feature strong {
-  color: var(--primary-color);
-  font-weight: 600;
+#how-it-works::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(21, 21, 36, 0.65);
+  z-index: 0;
 }
 
-.highlighted-feature:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  background: linear-gradient(to right, #fff, #f0f3ff);
+#how-it-works .container {
+  position: relative;
+  z-index: 1;
 }
 
-@media (max-width: 1024px) {
-  .features-grid {
+#how-it-works h2 {
+  color: var(--primary-color) !important;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+@media (max-width: 992px) {
+  .process-container {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  .features-grid {
+  .process-container {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   
-  .feature {
+  .process-step {
     padding: 1.5rem;
+    margin-bottom: 0;
   }
 }
 
@@ -3409,7 +3386,7 @@ h1, h2, h3, h4, h5, h6, p, li, span {
   margin-top: 1rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -3975,7 +3952,69 @@ h1, h2, h3, h4, h5, h6, p, li, span {
 .accordion-content .services-grid {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-  gap: 1rem;
+  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 992px) {
+  .accordion-content .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .accordion-content .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Contact Details Section */
+.contact-details {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact-details p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  color: var(--text-light);
+}
+
+.contact-details a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+  color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .side-contact {
+    bottom: 30px;
+    top: auto;
+    right: 20px;
+    transform: none;
+  }
+
+  .back-to-top {
+    bottom: 100px;
+    right: 20px;
+  }
+
+  .contact-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-option {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
 }
 
 
