@@ -47,8 +47,6 @@ header {
   display:flex; justify-content:space-between; align-items:center;
   padding:0 1rem; box-shadow:var(--shadow-md); z-index:1000;
 }
-.branding { display:flex; align-items:center; gap:0.5rem; }
-.branding a { display:flex; align-items:center; text-decoration:none; }
 .branding img { height:35px; }
 .branding h1 { color:var(--primary); font-size:1.2rem; }
 
@@ -115,15 +113,13 @@ nav a.active::after { width:100%; }
   max-width:500px; color:var(--text-muted);
 }
 .benefits {
-  list-style:none; padding-left:0;
+  list-style:none; padding-left:1.25rem;
 }
 .benefits li {
   position:relative; margin-bottom:1rem; line-height:1.5;
-  padding-left:1.5rem;
 }
 .benefits li::before {
   content:"→"; position:absolute; left:0; color:var(--primary);
-  font-weight:bold;
 }
 
 /*-----------------------------------
