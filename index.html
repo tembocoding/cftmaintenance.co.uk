@@ -15,21 +15,24 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #060644 0%, #1a1a5a 50%, #2a2a6a 100%);
       color: white;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      overflow: hidden;
     }
 
     .maintenance-container {
       max-width: 800px;
+      max-height: 90vh;
       text-align: center;
       background: rgba(255, 255, 255, 0.05);
-      padding: 60px 40px;
+      padding: 40px 40px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      overflow-y: auto;
     }
 
     .logo {
