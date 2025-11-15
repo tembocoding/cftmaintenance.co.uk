@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Under Maintenance - CFT Maintenance</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #060644 0%, #1a1a5a 50%, #2a2a6a 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .maintenance-container {
+      max-width: 800px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 60px 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      margin-bottom: 30px;
+    }
+
+    .logo img {
+      max-width: 200px;
+      height: auto;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #ffde59;
+      font-weight: 700;
+    }
+
+    .icon {
+      font-size: 5rem;
+      margin-bottom: 30px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    p {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+    }
+
+    .contact-info {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid rgba(255, 222, 89, 0.3);
+    }
+
+    .contact-info h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #ffde59;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+    }
+
+    .contact-item a {
+      color: #ffde59;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: #ffd700;
+      text-decoration: underline;
+    }
+
+    .emergency-banner {
+      background: rgba(255, 222, 89, 0.1);
+      border: 2px solid #ffde59;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+
+    .emergency-banner h3 {
+      color: #ffde59;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .emergency-banner p {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .phone-number {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ffde59;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .maintenance-container {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .icon {
+        font-size: 3.5rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+
+      .contact-info h2 {
+        font-size: 1.5rem;
+      }
+
+      .contact-item {
+        font-size: 1rem;
+      }
+
+      .phone-number {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="maintenance-container">
+    <div class="logo">
+      <img src="CFT_Maintenance_Logo.png" alt="CFT Maintenance Logo">
+    </div>
+
+    <div class="icon">🔧</div>
+
+    <h1>Website Under Maintenance</h1>
+
+    <p>
+      We're currently performing scheduled maintenance to improve your experience. 
+      Our website will be back online shortly.
+    </p>
+
+    <p>
+      In the meantime, if you need immediate assistance or have an emergency, 
+      please don't hesitate to contact us directly.
+    </p>
+
+    <div class="emergency-banner">
+      <h3>🚨 Emergency Services Available 24/7</h3>
+      <p>For urgent property maintenance issues:</p>
+      <div class="phone-number">
+        <a href="tel:02037690055">020 3769 0055</a>
+      </div>
+    </div>
+
+    <div class="contact-info">
+      <h2>Get In Touch</h2>
+      <div class="contact-details">
+        <div class="contact-item">
+          📧 Email: <a href="mailto:info@cftmaintenance.co.uk">info@cftmaintenance.co.uk</a>
+        </div>
+        <div class="contact-item">
+          📱 Phone: <a href="tel:02037690055">020 3769 0055</a>
+        </div>
+        <div class="contact-item">
+          📍 Serving Greater London
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 40px; font-size: 1rem; color: #b0b0b0;">
+      Thank you for your patience and understanding.
+    </p>
+  </div>
+</body>
+</html>
+
