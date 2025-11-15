@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+  <title>CFT Maintenance | Professional Property Maintenance Services</title>
+  
+  <!-- Preload critical images -->
+  <link rel="preload" as="image" href="/CFT_Maintenance_Logo.png">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JavaScript Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script src="main.js" defer></script>
+  
+  <!-- Dynamic path detection -->
+  <script>
+    // Get the base URL for the current environment
+    const getBaseUrl = () => {
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      // Get the full URL path and clean it
+      const urlPath = window.location.pathname.replace(/\/+$/, '');
+      const pathSegments = urlPath.split('/').filter(Boolean);
+      
+      if (!isLocal && pathSegments.length > 0) {
+        // For production, use the full path up to the last directory
+        return `/${pathSegments.slice(0, -1).join('/')}/`;
+      }
+      return './';  // Return relative path for both local and production
+    };
+
+    window.basePath = getBaseUrl();
+  </script>
+
+  <!-- Favicon with dynamic paths -->
+  <link rel="icon" type="image/png" href="/CFT_Maintenance_Logo.png">
+  <link rel="apple-touch-icon" href="/CFT_Maintenance_Logo.png">
+
+  <!-- Calendly -->
+  <script>
+    function loadCalendly() {
+      if (typeof Calendly !== 'undefined') return Promise.resolve();
+      
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        script.onload = () => setTimeout(() => typeof Calendly !== 'undefined' ? resolve() : reject(), 1000);
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+    window.onload = function() {
+      loadCalendly()
+        .catch(error => {
+          const widget = document.querySelector('.calendly-inline-widget');
+          if (widget) {
+            widget.innerHTML = `
+              <div style="text-align: center; padding: 2rem;">
+                <p>Our scheduling system is temporarily unavailable.</p>
+                <p>Please contact us directly or try again later.</p>
+                <a href="https://wa.me/447455234921" class="btn" style="display: inline-block; margin-top: 1rem;">
+                  Contact via WhatsApp
+                </a>
+              </div>
+            `;
+          }
+        });
+    };
+  </script>
+</head>
+
+<body class="home" style="overscroll-behavior: none; scroll-behavior: auto;">
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    ↑
+  </button>
+
+  <!-- Fixed Side Contact Button -->
+  <div class="side-contact">
+    <a href="#contact" class="contact-btn">
+      <i class="fas fa-envelope"></i>
+      <span>Contact Us</span>
+    </a>
+    <a href="https://wa.me/447455234921" class="whatsapp-btn" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor cursor--small"></div>
+
+  <!-- Main Header -->
+  <header>
+    <div class="branding">
+      <img src="/CFT_Maintenance_Logo.png" alt="CFT Maintenance Logo" class="logo" loading="eager">
+      <h1>CFT Maintenance</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how-it-works">Process</a></li>
+        <li><a href="#coverage">Coverage</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- Smooth scroll wrapper -->
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <!-- Hero Section -->
+      <section id="hero">
+        <div class="hero-container">
+          <div class="hero-text">
+            <h1 class="hero-heading">
+              Quality Technicians,<br>
+              Dedicated Support Team:<br>
+              Hassle-Free Property Services
+            </h1>
+            <p class="description">Trusted by property managers and landlords across London, we deliver comprehensive maintenance solutions with a focus on quality, reliability and professionalism.</p>
+            <ul class="benefits">
+              <li>Expert Technicians with 10+ Years Experience</li>
+              <li>Jobs Scheduled Within 24 Hours</li>
+              <li>Responsive Customer Support</li>
+              <li>Report & Photos within 24 Hours Of Completion</li>
+            </ul>
+            <div class="cta-group">
+              <a href="#contact" class="btn primary-cta">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section id="services">
+        <div class="container" data-aos="fade-up">
+          <h2>Comprehensive Property Maintenance Services</h2>
+          <p class="service-intro">From routine maintenance to emergency repairs, we provide a complete range of property maintenance services to keep your properties in perfect condition.</p>
+          
+          <div class="pricing-accordion">
+            <!-- Handyman & Plumbing -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <i class="fas fa-wrench"></i>
+                <h3>General Services - Fix multiple issues for just £70</h3>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="accordion-content">
+                <div class="service-badge">Professional Services</div>
+                <div class="pricing-details">
+                  <div class="main-price">Call-out Fee: £70</div>
+                  <div class="pricing-note">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Fixed quotes available when pictures/videos are provided before booking</span>
+                  </div>
+                  <div class="services-grid no-animation">
+                    <div class="service">
+              <div class="service-header">
+                        <i class="fas fa-paint-roller"></i>
+                        <h3>Painting & Decorating</h3>
+              </div>
+                      <p class="role-summary">Professional interior and exterior painting services.</p>
+              <ul class="service-features">
+                <li>
+                          <i class="fas fa-paint-brush"></i>
+                          <span><strong>Interior/Exterior:</strong> Wall preparation and painting</span>
+                </li>
+                <li>
+                          <i class="fas fa-fill-drip"></i>
+                          <span><strong>Wall Preparation:</strong> Filling and repairs</span>
+                </li>
+                <li>
+                          <i class="fas fa-scroll"></i>
+                          <span><strong>Wallpaper:</strong> Stripping and installation</span>
+                </li>
+                <li>
+                          <i class="fas fa-border-style"></i>
+                          <span><strong>Woodwork:</strong> Skirting boards and features</span>
+                </li>
+              </ul>
+            </div>
+        
+                    <div class="service">
+              <div class="service-header">
+                        <i class="fas fa-hammer"></i>
+                        <h3>Property Maintenance</h3>
+              </div>
+                      <p class="role-summary">Comprehensive property maintenance and inspection services.</p>
+              <ul class="service-features">
+                <li>
+                          <i class="fas fa-clipboard-check"></i>
+                          <span><strong>Inspections:</strong> Regular landlord checks</span>
+                </li>
+                <li>
+                          <i class="fas fa-tools"></i>
+                          <span><strong>Repairs:</strong> Pre and post-tenancy fixes</span>
+                </li>
+                <li>
+                          <i class="fas fa-brush"></i>
+                          <span><strong>Maintenance:</strong> Sealant and grout upkeep</span>
+                </li>
+                <li>
+                          <i class="fas fa-phone-volume"></i>
+                          <span><strong>Emergency:</strong> 24/7 call-out service</span>
+                </li>
+              </ul>
+            </div>
+        
+                    <div class="service">
+                      <div class="service-header">
+                        <i class="fas fa-plug"></i>
+                        <h3>Minor Electrical Repairs</h3>
+              </div>
+                      <p class="role-summary">Essential electrical maintenance and installations.</p>
+                      <ul class="service-features">
+                        <li>
+                          <i class="fas fa-bolt"></i>
+                          <span><strong>Replacements:</strong> Sockets and switches</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-lightbulb"></i>
+                          <span><strong>Lighting:</strong> Fixture and bulb changes</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-clock"></i>
+                          <span><strong>Controls:</strong> Dimmer and timer setup</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-fan"></i>
+                          <span><strong>Ventilation:</strong> Extractor fan maintenance</span>
+                        </li>
+                </ul>
+              </div>
+        
+                    <div class="service">
+                      <div class="service-header">
+                        <i class="fas fa-shower"></i>
+                        <h3>Bathroom Repairs</h3>
+              </div>
+                      <p class="role-summary">Specialized bathroom maintenance and upgrades.</p>
+                      <ul class="service-features">
+                        <li>
+                          <i class="fas fa-water"></i>
+                          <span><strong>Sealing:</strong> Silicone application</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-faucet"></i>
+                          <span><strong>Fixtures:</strong> Tap and shower repairs</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-toilet"></i>
+                          <span><strong>Plumbing:</strong> Toilet and drainage fixes</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-spray-can"></i>
+                          <span><strong>Treatment:</strong> Mould removal and prevention</span>
+                        </li>
+                </ul>
+              </div>
+        
+                    <div class="service">
+                      <div class="service-header">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Flooring Installation</h3>
+                </div>
+                      <p class="role-summary">Professional flooring solutions and repairs.</p>
+                      <ul class="service-features">
+                        <li>
+                          <i class="fas fa-border-all"></i>
+                          <span><strong>Installation:</strong> Laminate and vinyl</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-tree"></i>
+                          <span><strong>Wood Flooring:</strong> Installation and repair</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-th"></i>
+                          <span><strong>Tiling:</strong> Kitchen and bathroom floors</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-ruler-combined"></i>
+                          <span><strong>Preparation:</strong> Floor levelling and trims</span>
+                        </li>
+                      </ul>
+            </div>
+
+                    <div class="service">
+                      <div class="service-header">
+                        <i class="fas fa-box-open"></i>
+                        <h3>Flat-Pack & Fixtures</h3>
+                </div>
+                      <p class="role-summary">Furniture assembly and fixture installation.</p>
+                      <ul class="service-features">
+                        <li>
+                          <i class="fas fa-chair"></i>
+                          <span><strong>Assembly:</strong> Furniture and units</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-tv"></i>
+                          <span><strong>Mounting:</strong> TV and shelving brackets</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-image"></i>
+                          <span><strong>Hanging:</strong> Pictures and mirrors</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-baby"></i>
+                          <span><strong>Safety:</strong> Baby-proofing installation</span>
+                        </li>
+                      </ul>
+            </div>
+
+                    <div class="service">
+                      <div class="service-header">
+                        <i class="fas fa-wrench"></i>
+                        <h3>General Plumbing</h3>
+                </div>
+                      <p class="role-summary">Professional plumbing repairs and installations.</p>
+                      <ul class="service-features">
+                        <li>
+                          <i class="fas fa-tint"></i>
+                          <span><strong>Repairs:</strong> Leak detection and fixing</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-sink"></i>
+                          <span><strong>Installation:</strong> Sinks and appliances</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-shower"></i>
+                          <span><strong>Bathroom:</strong> Shower and bath repairs</span>
+                        </li>
+                        <li>
+                          <i class="fas fa-wrench"></i>
+                          <span><strong>Maintenance:</strong> Preventive care</span>
+                        </li>
+                      </ul>
+              </div>
+            </div>
+
+
+                  <div class="quality-guarantee">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>All work guaranteed and fully insured</span>
+                </div>
+                  <a href="#contact" class="btn">Book Service</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cleaning Services -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <i class="fas fa-broom"></i>
+                <h3>End-of-Tenancy Cleaning - From £155</h3>
+                <i class="fas fa-chevron-down"></i>
+                </div>
+              <div class="accordion-content">
+                <div class="service-badge">Professional Cleaning</div>
+                <div class="pricing-details">
+                  <table class="cleaning-table">
+                    <thead>
+                      <tr>
+                        <th>Property Description</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-home"></i>
+                          Studio
+                        </td>
+                        <td class="price-column">£155</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-home"></i>
+                          1 Bedroom, 1 Bathroom
+                        </td>
+                        <td class="price-column">£195</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-home"></i>
+                          2 Bedrooms, 1 Bathroom
+                        </td>
+                        <td class="price-column">£225</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-home"></i>
+                          3 Bedrooms, 1 Bathroom
+                        </td>
+                        <td class="price-column">£310</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-building"></i>
+                          4 Bedrooms, 2 Bathrooms
+                        </td>
+                        <td class="price-column">£450</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-building"></i>
+                          5 Bedrooms, 2 Bathrooms
+                        </td>
+                        <td class="price-column">£540</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                   <h3 class="section-subtitle" style="text-align: center; margin: 2rem 0 1rem; color: var(--primary-color);">Our Detailed Cleaning Checklist</h3>
+          
+                   <div class="cleaning-checklist">
+                     <div class="cleaning-area">
+                       <h4>KITCHEN</h4>
+                       <ul>
+                         <li>Clean and polish all cupboards and drawers both inside and out</li>
+                         <li>Deep clean both inside and outside refrigerator and freezer</li>
+                         <li>Deep clean and degrease inside of oven, polish outside parts, hob and grill</li>
+                         <li>Wash and wipe down kitchen countertops</li>
+                         <li>Remove mould and grease from wall tiles, wash down and polish</li>
+                         <li>Clean windows from the inside and out, wipe down sills and ledges</li>
+                         <li>Vacuum and mop hard floors</li>
+                       </ul>
+            </div>
+                     
+                     <div class="cleaning-area">
+                       <h4>BEDROOM(S)</h4>
+                       <ul>
+                         <li>Wipe down doors, fittings, hinges & damp wiped and door tops</li>
+                         <li>Wash mirrors/windows internally including sills and ledges</li>
+                         <li>Dusting & Wipe clean walls</li>
+                         <li>Clean inside and outside and on top of cupboards/wardrobes and furniture</li>
+                         <li>Clean curtain rails and behind curtains</li>
+                         <li>Clean sockets, plugs, light switches, fixtures and fittings</li>
+                         <li>Wipe down skirting boards, vacuum and mop all hard floors</li>
+                </ul>
+            </div>
+
+                     <div class="cleaning-area">
+                       <h4>LIVING ROOMS</h4>
+                       <ul>
+                         <li>All carpeted areas vacuumed</li>
+                         <li>All hard floors vacuumed & washed</li>
+                         <li>Upholstery vacuumed & tidy</li>
+                         <li>Clean & polish mirrors</li>
+                         <li>All cobwebs removed from ceilings/ walls</li>
+                         <li>Dusting & wipe clean walls</li>
+                         <li>All doors fittings, hinges dusted & damp wiped</li>
+                         <li>All radiators & skirting boards dusted and damp wiped</li>
+                </ul>
+            </div>
+
+                     <div class="cleaning-area">
+                       <h4>BATHROOM(S)</h4>
+                       <ul>
+                         <li>Clean and disinfect toilets from inside and out</li>
+                         <li>Clean bath and removing limescale</li>
+                         <li>Wash shower cabinets and de-scale screens from inside and out</li>
+                         <li>Wash down and de-scale sink and shine taps</li>
+                         <li>Clean extractor fan/ ventilation</li>
+                         <li>Wash down tiles, remove mould and wipe tiles</li>
+                         <li>Clean and polish mirrors and towel rails</li>
+                         <li>Wipe cupboards, shelves, surfaces and polish steel</li>
+                         <li>Vacuum and mop hard floors</li>
+                </ul>
+            </div>
+
+                     <div class="cleaning-area">
+                       <h4>RECEPTION ROOMS/STAIRWAYS</h4>
+                       <ul>
+                         <li>Wipe down stairways and railings</li>
+                         <li>Clean behind and polish mirrors</li>
+                         <li>All cobwebs removed from ceilings & walls</li>
+                         <li>Clean behind, inside and on top of cupboards and furniture</li>
+                         <li>Dust and polish all flat surfaces and carpets</li>
+                         <li>Wipe down all skirting boards and wood works of dust</li>
+                </ul>
+          </div>
+
+                     <div class="cleaning-area">
+                       <h4>UTILITY/ LAUNDRY ROOMS</h4>
+                       <ul>
+                         <li>Clean & polish inside and outside of all cupboards/ drawers</li>
+                         <li>Exterior of washing machine washed</li>
+                         <li>Clean behind machine if accessible</li>
+                         <li>Soap drawers & filters cleaned if accesible</li>
+                         <li>Wipe down walls internally</li>
+                         <li>Wipe down all woodworks & doors of damp/dust</li>
+                </ul>
+              </div>
+            </div>
+                  
+                  <div class="cleaning-notes">
+                    <i class="fas fa-couch"></i>
+                    <p>Carpets & Upholstery - Vacuuming & soft furnishing included. If professional steam clean is required quote can be given on booking once pictures are given.</p>
+          </div>
+
+                  <table class="extras-table">
+                    <thead>
+                      <tr>
+                        <th>Extras</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><i class="fas fa-bath"></i> Bathroom</td>
+                        <td class="price-column">£20</td>
+                      </tr>
+                      <tr>
+                        <td><i class="fas fa-toilet"></i> Toilet</td>
+                        <td class="price-column">£15</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-building"></i>
+                          Additional Floor (per floor)
+                        </td>
+                        <td class="price-column">£15</td>
+                      </tr>
+                      <tr>
+                        <td><i class="fas fa-door-open"></i> Balcony/Terrace</td>
+                        <td class="price-column">£15</td>
+                      </tr>
+                      <tr>
+                        <td><i class="fas fa-box"></i> Personal Items Disposal (per bag)</td>
+                        <td class="price-column">From £10</td>
+                      </tr>
+                      <tr>
+                        <td><i class="fas fa-hand-sparkles"></i> Heavy Scuffs & Finger Marks</td>
+                        <td class="price-column">£5 per room</td>
+                      </tr>
+                      <tr>
+                        <td><i class="fas fa-clock"></i> Emergency/Same Day Call-out</td>
+                        <td class="price-column">£30</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <a href="#contact" class="btn">Book Service</a>
+              </div>
+            </div>
+          </div>
+
+            <!-- Carpet & Upholstery Cleaning -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <i class="fas fa-couch"></i>
+                <h3>Carpet & Upholstery Cleaning</h3>
+                <i class="fas fa-chevron-down"></i>
+          </div>
+              <div class="accordion-content">
+                <div class="service-badge">Professional Cleaning</div>
+                <div class="pricing-details">
+                  <table class="cleaning-table">
+                    <thead>
+                      <tr>
+                        <th>Carpet & Upholstery</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-bed"></i>
+                          Single Bedroom
+                        </td>
+                        <td class="price-column">£40</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-bed"></i>
+                          Double Bedroom
+                        </td>
+                        <td class="price-column">£50</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-couch"></i>
+                          Living Room - Double
+                        </td>
+                        <td class="price-column">£50</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-couch"></i>
+                          Living Room - King
+                        </td>
+                        <td class="price-column">£60</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-home"></i>
+                          Stairs - One Flight
+                        </td>
+                        <td class="price-column">£50</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-home"></i>
+                          Stairs - With Landing
+                        </td>
+                        <td class="price-column">£60</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-square"></i>
+                          Rug - Small
+                        </td>
+                        <td class="price-column">£30</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-square"></i>
+                          Rug - Medium
+                        </td>
+                        <td class="price-column">£65</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-square"></i>
+                          Rug - Large
+                        </td>
+                        <td class="price-column">£100</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-couch"></i>
+                          Sofa - 1 Seater
+                        </td>
+                        <td class="price-column">£35</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-couch"></i>
+                          Sofa - 2 Seater
+                        </td>
+                        <td class="price-column">£60</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-couch"></i>
+                          Sofa - 3 Seater
+                        </td>
+                        <td class="price-column">£95</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-couch"></i>
+                          Sofa - 4 Seater
+                        </td>
+                        <td class="price-column">£105</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-couch"></i>
+                          Puffy or Foot Stool
+                        </td>
+                        <td class="price-column">£15</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-bed"></i>
+                          Mattress - Single
+                        </td>
+                        <td class="price-column">£45</td>
+                      </tr>
+                      <tr>
+                        <td class="property-description">
+                          <i class="fas fa-bed"></i>
+                          Mattress - Double
+                        </td>
+                        <td class="price-column">£55</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <a href="#contact" class="btn">Book Service</a>
+        </div>
+              </div>
+              </div>
+            </div>
+            
+          <div class="section-cta" data-aos="fade-up">
+            <p>Not sure which service you need?</p>
+            <a href="#contact" class="btn">Get Expert Advice</a>
+              </div>
+            </div>
+      </section>
+
+      <section id="how-it-works">
+        <div class="container">
+          <h2>Our Service Process</h2>
+          <p class="process-intro">We've made property maintenance straightforward with our efficient three-step process:</p>
+          <div class="process-container">
+            <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+              <h4><span class="step-number">1</span>Enquiry & Assessment</h4>
+              <ul>
+                <li><strong>Prompt Response</strong> to your maintenance enquiry</li>
+                <li><strong>Site Survey</strong> when required</li>
+                <li><strong>Detailed Quote</strong> with transparent pricing</li>
+              </ul>
+            </div>
+            
+            <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+              <h4><span class="step-number">2</span>Booking & Service</h4>
+              <ul>
+                <li><strong>Convenient Scheduling</strong> at times that suit you</li>
+                <li><strong>24/7 Emergency Service</strong> when needed</li>
+                <li><strong>Qualified Technicians</strong> for all works</li>
+              </ul>
+            </div>
+            
+            <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+              <h4><span class="step-number">3</span>Completion & Documentation</h4>
+              <ul>
+                <li><strong>Detailed Work Report</strong> with photographic evidence</li>
+                <li><strong>Quality Assurance</strong> checks on completion</li>
+                <li><strong>Documentation</strong> of completed works</li>
+              </ul>
+              </div>
+            </div>
+
+          <div class="section-cta" data-aos="fade-up">
+            <p>Ready to experience professional maintenance service?</p>
+            <a href="#contact" class="btn">Book Now</a>
+          </div>
+        </div>
+    </section>
+    
+      <section id="coverage">
+        <div class="container" data-aos="fade-up">
+          <h2>Greater London Coverage</h2>
+          <p class="section-intro">With a comprehensive range of services and coverage across the Greater London area, CFT Maintenance is equipped to handle all your property maintenance needs.</p>
+            
+          <div class="map-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317718.69319292053!2d-0.3817765050863085!3d51.528307984912544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2suk!4v1710799586149!5m2!1sen!2suk" 
+              width="100%" 
+              height="450" 
+              style="border:0; border-radius: 12px;" 
+              allowfullscreen="" 
+              loading="lazy">
+            </iframe>
+              </div>
+
+          <div class="coverage-grid">
+            <div class="coverage-area" data-aos="fade-up" data-aos-delay="100">
+              <div class="area-header">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>North London</h3>
+                </div>
+              <ul class="area-list">
+                <li>Islington</li>
+                <li>Camden</li>
+                <li>Barnet</li>
+                <li>Enfield</li>
+                <li>Haringey</li>
+              </ul>
+              </div>
+
+            <div class="coverage-area" data-aos="fade-up" data-aos-delay="200">
+              <div class="area-header">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>South London</h3>
+                </div>
+              <ul class="area-list">
+                <li>Croydon</li>
+                <li>Bromley</li>
+                <li>Southwark</li>
+                <li>Lambeth</li>
+                <li>Greenwich</li>
+              </ul>
+              </div>
+
+            <div class="coverage-area" data-aos="fade-up" data-aos-delay="300">
+              <div class="area-header">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>East London</h3>
+                </div>
+              <ul class="area-list">
+                <li>Tower Hamlets</li>
+                <li>Hackney</li>
+                <li>Newham</li>
+                <li>Redbridge</li>
+                <li>Havering</li>
+              </ul>
+              </div>
+
+            <div class="coverage-area" data-aos="fade-up" data-aos-delay="400">
+              <div class="area-header">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>West London</h3>
+                </div>
+              <ul class="area-list">
+                <li>Ealing</li>
+                <li>Hounslow</li>
+                <li>Hillingdon</li>
+                <li>Harrow</li>
+                <li>Brent</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="coverage-note" data-aos="fade-up">
+            <p>Not sure if we cover your area? Contact us to confirm coverage and schedule service.</p>
+            <a href="#contact" class="btn">Check Coverage</a>
+              </div>
+              </div>
+      </section>
+    
+
+      <section id="why-us">
+        <div class="container" data-aos="fade-up">
+          <h2>Why Choose Us</h2>
+          <p class="section-intro">We provide reliable, professional property maintenance services with a focus on quality and customer satisfaction. Our network of qualified technicians ensures your property is well-maintained and compliant with all regulations.</p>
+          
+          <div class="features-grid">
+            <div class="feature highlighted-feature" data-aos="fade-up" data-aos-delay="200">
+              <h3>Insured Technicians</h3>
+              <p>Our entire team is fully insured with comprehensive public liability coverage, giving you complete peace of mind when we work on your property.</p>
+                </div>
+            <div class="feature highlighted-feature" data-aos="fade-up" data-aos-delay="300">
+              <h3>Quality Guarantee</h3>
+              <p>We stand behind our work with a satisfaction guarantee. If any recall is required, remedial works are completed at <strong>no extra charge</strong>. Your satisfaction is our priority, and we ensure every job is done right.</p>
+                </div>
+            <div class="feature" data-aos="fade-up" data-aos-delay="400">
+              <h3>Comprehensive Reporting</h3>
+              <p>Every job is documented with detailed reports and photographic evidence. Our technicians conduct thorough property inspections, identifying and reporting any additional maintenance concerns—even those outside our immediate scope—ensuring you stay informed about your property's condition.</p>
+                </div>
+            <div class="feature" data-aos="fade-up" data-aos-delay="500">
+              <h3>Fair & Transparent Pricing</h3>
+              <p>Call-out fees are <strong>credited to your total invoice</strong> if additional visits are required. We provide detailed quotes upfront and ensure no hidden costs or surprises.</p>
+                </div>
+            <div class="feature" data-aos="fade-up" data-aos-delay="600">
+              <h3>24/7 Emergency Response</h3>
+              <p>Available round-the-clock for emergency callouts. Our strategically located teams ensure quick response times across Greater London and Berkshire.</p>
+                </div>
+      </div>
+      </div>
+    </section>
+    
+      <section id="faq">
+        <div class="container" data-aos="fade-up">
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-grid">
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+              <h3>How do I book your services?</h3>
+              <p>You can book our services through our website, by telephone, or via WhatsApp. We aim to respond to all enquiries within 2 hours during business hours and can often arrange same-day service for urgent matters.</p>
+            </div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+              <h3>What areas do you cover?</h3>
+              <p>We cover all areas within the M25 and throughout Greater London, as well as select areas in Berkshire. Our strategically placed technicians ensure prompt response times across our service area.</p>
+            </div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+              <h3>Do you charge for parking and congestion charges?</h3>
+              <p>No, all parking fees and congestion charges are included in our call-out fee.</p>
+            </div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+              <h3>How do you charge for materials?</h3>
+              <p>Materials are charged separately from our labour rates. We provide transparent pricing for all materials needed, with itemised receipts provided. For larger jobs, we can provide a complete quote including materials in advance.</p>
+            </div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
+              <h3>What are your payment terms?</h3>
+              <p>We accept direct bank transfers and credit/debit card payments. Payment is required upon completion of works. For larger projects, we require a deposit before commencing work.</p>
+            </div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="600">
+              <h3>What is your cancellation policy?</h3>
+              <p>We require a minimum of 24 hours' notice for cancellations or rescheduling to avoid a cancellation fee. Emergency situations will be considered on a case-by-case basis.</p>
+            </div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="700">
+              <h3>Do you offer commercial maintenance contracts?</h3>
+              <p>Yes, we provide bespoke maintenance contracts for commercial properties, including scheduled maintenance, priority response, and preferential rates. Contact us to discuss your requirements.</p>
+            </div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="800">
+              <h3>What insurance do you carry?</h3>
+              <p>We maintain comprehensive public liability insurance up to £5 million. All our technicians and subcontractors are fully insured for complete peace of mind.</p>
+            </div>
+          </div>
+          <div class="section-cta" data-aos="fade-up">
+            <p>Have additional questions?</p>
+            <a href="#contact" class="btn">Contact Us</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container" data-aos="fade-up">
+          <h2>Book a Service</h2>
+          <p class="subtitle">Contact us today for professional property maintenance services across Greater London.</p>
+          
+          <div class="contact-options">
+            <a href="https://wa.me/447455234921" class="contact-option whatsapp" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+              <span>Chat on WhatsApp</span>
+            </a>
+            <a href="mailto:office@cftmaintenance.co.uk" class="contact-option calendar">
+              <i class="far fa-envelope"></i>
+              <span>Email Us</span>
+            </a>
+          </div>
+          
+          <div class="contact-details">
+            <p><strong>Phone:</strong> <a href="tel:02033189892">020 3318 9892</a></p>
+            <p><strong>Email:</strong> <a href="mailto:office@cftmaintenance.co.uk">office@cftmaintenance.co.uk</a></p>
+          </div>
+        </div>
+      </section>
+      
+      <footer>
+        <div class="container">
+          <div class="footer-grid">
+            <div class="footer-section">
+              <h3>ABOUT US</h3>
+              <img src="/CFT_Maintenance_Logo.png" alt="CFT Maintenance Logo" class="footer-logo" style="width: 120px; height: auto; margin: 1rem 0;">
+              <p>CFT Maintenance is a property maintenance company that services London (within M25) and surrounding areas. We provide a fully managed maintenance service, ensuring a hassle-free experience with direct tenant contact, prompt scheduling within 24 hours, detailed job reports, and full insurance coverage. We are fully insured with public liability cover for complete peace of mind.</p>
+              <div class="social-links">
+                <a href="https://wa.me/447455234921" class="social-link" target="_blank">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:office@cftmaintenance.co.uk" class="social-link">
+                  <i class="fas fa-envelope"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="footer-section">
+              <h3>USEFUL LINKS</h3>
+              <ul class="footer-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#how-it-works">Process</a></li>
+                <li><a href="#coverage">Coverage</a></li>
+                <li><a href="#faq">FAQ</a></li>
+              </ul>
+            </div>
+            
+            <div class="footer-section contact-section">
+              <h3>CONTACT US</h3>
+              <p><strong>CFT Maintenance Head Office</strong><br>
+              7 Bell Yard<br>
+              London WC2A 2JR</p>
+              <p><strong>Phone:</strong> 020 3318 9892<br>
+              <strong>Email:</strong> office@cftmaintenance.co.uk</p>
+              <p><a href="https://maps.google.com/?q=7+Bell+Yard,+London+WC2A+2JR" target="_blank">View on Google Maps</a></p>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; 2024 CFT Maintenance. All rights reserved.</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
+
